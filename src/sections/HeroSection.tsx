@@ -18,7 +18,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative flex h-screen flex-col overflow-hidden">
+    <section className="relative flex min-h-[100svh] flex-col overflow-hidden lg:min-h-screen">
       {/* Ambient glow that follows the mouse */}
       <div
         ref={glowRef}
@@ -48,12 +48,12 @@ export default function HeroSection() {
 
       {/* ── NAV ── */}
       <FadeIn delay={0} y={-20}>
-        <nav className="relative z-30 flex items-center justify-between px-6 pt-6 md:px-10 md:pt-8">
+        <nav className="relative z-30 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 pt-5 md:flex-nowrap md:justify-between md:px-10 md:pt-8">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium uppercase tracking-wider text-[#D7E2EA] transition-opacity duration-200 hover:opacity-70 md:text-lg lg:text-[1.4rem]"
+              className="text-[0.72rem] font-medium uppercase tracking-[0.14em] text-[#D7E2EA] transition-opacity duration-200 hover:opacity-70 sm:text-xs md:text-lg lg:text-[1.4rem]"
             >
               {link.label}
             </a>
