@@ -3,6 +3,8 @@ export const CONTACT = {
   github: 'https://github.com/rishh4real',
   linkedin: 'https://www.linkedin.com/in/shaurya-sharma-72ab8b376/',
   nudgehqLinkedin: 'https://www.linkedin.com/company/nudgehq-web/',
+  nudgehqInstagram: 'https://www.instagram.com/hello.nudgehq/?__pwa=1',
+  instagram: 'https://www.instagram.com/shauryaa.sh/?__pwa=1',
   nudgehq: 'https://nudgehq.app',
 };
 

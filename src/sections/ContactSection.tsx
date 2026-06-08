@@ -19,6 +19,21 @@ function GitHubMark() {
   );
 }
 
+function InstagramMark() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className="h-6 w-6 flex-shrink-0 text-[#D7E2EA]"
+    >
+      <path
+        fill="currentColor"
+        d="M7.75 3h8.5A4.75 4.75 0 0 1 21 7.75v8.5A4.75 4.75 0 0 1 16.25 21h-8.5A4.75 4.75 0 0 1 3 16.25v-8.5A4.75 4.75 0 0 1 7.75 3Zm0 1.5A3.25 3.25 0 0 0 4.5 7.75v8.5a3.25 3.25 0 0 0 3.25 3.25h8.5a3.25 3.25 0 0 0 3.25-3.25v-8.5a3.25 3.25 0 0 0-3.25-3.25h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5A3.5 3.5 0 1 0 12 16a3.5 3.5 0 0 0 0-7Zm5.2-.95a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0Z"
+      />
+    </svg>
+  );
+}
+
 const LINKS = [
   { icon: Mail, label: 'Email', href: `mailto:${CONTACT.email}`, text: CONTACT.email },
   { icon: Code2, label: 'GitHub', href: CONTACT.github, text: '@rishh4real' },
@@ -28,6 +43,18 @@ const LINKS = [
     label: 'NudgeHQ',
     href: CONTACT.nudgehqLinkedin,
     text: 'linkedin.com/company/nudgehq-web',
+  },
+  {
+    icon: InstagramMark,
+    label: 'NudgeHQ Instagram',
+    href: CONTACT.nudgehqInstagram,
+    text: '@hello.nudgehq',
+  },
+  {
+    icon: InstagramMark,
+    label: 'Personal Instagram',
+    href: CONTACT.instagram,
+    text: '@shauryaa.sh',
   },
 ];
 
