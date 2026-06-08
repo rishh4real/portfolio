@@ -4,6 +4,7 @@ import AboutSection from './sections/AboutSection';
 import SkillsSection from './sections/SkillsSection';
 import PricingSection from './sections/PricingSection';
 import ProjectsSection from './sections/ProjectsSection';
+import ProfileBannerSection from './sections/ProfileBannerSection';
 import ContactSection from './sections/ContactSection';
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
       <SkillsSection />
       <ProjectsSection />
       <PricingSection />
+      <ProfileBannerSection />
       <ContactSection />
     </main>
   );

@@ -200,4 +200,4 @@ export const OTHER_PROJECTS = [
 ];
 
 export const ABOUT_TEXT =
-  "I'm a first-year CS + AIML student at Newton School of Technology, ADYPU, and the founder of NudgeHQ — an AI-powered workforce progress tracking SaaS. I've shipped live products across legal tech, crisis response, and event intelligence. Passionate about humanitarian tech and LLM integration, I love building products that solve real problems. Let's build something incredible together!";
+  "I'm a second-year CS + AIML student at Newton School of Technology, ADYPU, and the founder of NudgeHQ — an AI-powered workforce progress tracking SaaS. I've shipped live products across legal tech, crisis response, and event intelligence. Passionate about humanitarian tech and LLM integration, I love building products that solve real problems. Let's build something incredible together!";
