@@ -116,9 +116,9 @@ export default function HeroSection() {
         <FadeIn
           delay={0.25}
           y={30}
-          className="relative ml-12 hidden w-[min(33vw,430px)] self-center md:block lg:ml-16 lg:w-[min(30vw,390px)]"
+          className="relative ml-14 hidden w-[min(31vw,400px)] self-center md:block lg:ml-20 lg:w-[min(27vw,360px)] lg:translate-x-4"
         >
-          <div className="rounded-[34px] border border-white/10 bg-[#f7f7f7] p-3 shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
+          <div className="rounded-[34px] border border-white/10 bg-[#f7f7f7] p-2.5 shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
             <div className="overflow-hidden rounded-[24px] bg-white">
               <img
                 src={AVATAR_IMAGE}
@@ -171,8 +171,8 @@ export default function HeroSection() {
         </FadeIn>
       </div>
 
-      <FadeIn delay={0.25} y={30} className="relative z-20 px-6 pb-8 md:hidden">
-        <div className="mx-auto max-w-[375px] rounded-[30px] border border-white/10 bg-[#f7f7f7] p-3 shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
+      <FadeIn delay={0.25} y={30} className="relative z-20 px-6 pb-10 md:hidden">
+        <div className="mx-auto max-w-[360px] rounded-[30px] border border-white/10 bg-[#f7f7f7] p-2.5 shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
           <div className="overflow-hidden rounded-[22px] bg-white">
             <img
               src={AVATAR_IMAGE}
