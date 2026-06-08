@@ -62,7 +62,7 @@ export default function HeroSection() {
       </FadeIn>
 
       {/* ── MAIN CONTENT: text + profile card ── */}
-      <div className="relative z-10 flex flex-1 items-center px-6 pb-10 md:px-16 md:pb-14 lg:px-24">
+      <div className="relative z-10 flex flex-1 items-center px-6 pb-10 md:px-12 md:pb-14 lg:px-14 xl:px-16">
         {/* ── LEFT: Big heading + subtitle + CTA ── */}
         <div className="relative z-10 flex max-w-4xl flex-1 flex-col justify-center">
           <FadeIn delay={0.1} y={30}>
@@ -114,7 +114,7 @@ export default function HeroSection() {
         <FadeIn
           delay={0.25}
           y={30}
-          className="relative ml-12 hidden w-[min(30vw,380px)] self-center md:block lg:ml-16 lg:w-[min(27vw,350px)] lg:translate-x-2"
+          className="relative ml-auto hidden w-[min(32vw,430px)] self-center md:block lg:ml-16 lg:w-[min(30vw,410px)] lg:translate-x-8 xl:translate-x-16"
         >
           <div className="rounded-[34px] border border-white/10 bg-[#f7f7f7] p-2.5 shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
             <div className="overflow-hidden rounded-[24px] bg-white">
