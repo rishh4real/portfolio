@@ -1,53 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import FadeIn from '../components/FadeIn';
-import Magnet from '../components/Magnet';
 import ContactButton from '../components/ContactButton';
 import { NAV_LINKS } from '../data/content';
-import avatarImg from '../assets/avatar.png';
+
+const AVATAR_IMAGE = '/images/avatar_face.jpg';
 
 export default function HeroSection() {
   const glowRef = useRef<HTMLDivElement>(null);
-  const [transparentAvatar, setTransparentAvatar] = useState<string | null>(null);
-
-  // Dynamic background removal for avatar
-  useEffect(() => {
-    const img = new Image();
-    img.src = avatarImg;
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-
-      ctx.drawImage(img, 0, 0);
-      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const data = imgData.data;
-
-      // Make only pure black or extremely dark background pixels transparent.
-      // A threshold of 5 ensures the hair remains fully opaque.
-      for (let i = 0; i < data.length; i += 4) {
-        const r = data[i];
-        const g = data[i + 1];
-        const b = data[i + 2];
-        
-        const maxVal = Math.max(r, g, b);
-        
-        if (maxVal < 5) {
-          // Smooth edge for the outer pixels
-          if (maxVal < 2) {
-            data[i + 3] = 0;
-          } else {
-            const ratio = (maxVal - 2) / 3;
-            data[i + 3] = Math.round(ratio * 255);
-          }
-        }
-      }
-
-      ctx.putImageData(imgData, 0, 0);
-      setTransparentAvatar(canvas.toDataURL());
-    };
-  }, []);
 
   // Subtle mouse-follow glow effect
   useEffect(() => {
@@ -104,18 +63,12 @@ export default function HeroSection() {
         </nav>
       </FadeIn>
 
-      {/* ── MAIN CONTENT: left text + huge transparent avatar ── */}
-      <div className="relative z-10 flex flex-1 items-stretch justify-between px-6 md:px-16 lg:px-24">
+      {/* ── MAIN CONTENT: text + profile card ── */}
+      <div className="relative z-10 flex flex-1 items-center px-6 pb-10 md:px-16 md:pb-14 lg:px-24">
         {/* ── LEFT: Big heading + subtitle + CTA ── */}
-        <div className="flex flex-1 flex-col justify-center">
+        <div className="relative z-10 flex max-w-4xl flex-1 flex-col justify-center">
           <FadeIn delay={0.1} y={30}>
-            <p
-              className="mb-1 font-light uppercase tracking-[0.25em] text-[#8B9DB8]"
-              style={{ fontSize: 'clamp(0.65rem, 1.2vw, 1rem)' }}
-            >
-              About
-            </p>
-            <h1 className="hero-heading font-black uppercase leading-[0.88] tracking-tight">
+            <h1 className="hero-heading font-black uppercase leading-[0.84] tracking-tight">
               <span
                 className="block"
                 style={{ fontSize: 'clamp(3rem, 8vw, 7.5rem)' }}
@@ -125,100 +78,145 @@ export default function HeroSection() {
               <span
                 className="block"
                 style={{
-                  fontSize: 'clamp(4.5rem, 12vw, 11.5rem)',
-                  letterSpacing: '-0.04em',
+                  fontSize: 'clamp(5rem, 13vw, 13rem)',
+                  letterSpacing: '-0.055em',
                 }}
               >
-                Shaurya
-              </span>
-              <span
-                className="block"
-                style={{
-                  fontSize: 'clamp(3rem, 7.5vw, 7rem)',
-                  letterSpacing: '-0.03em',
-                }}
-              >
-                Sharma
+                Shaurya Sharma
               </span>
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.3} y={20}>
             <p
-              className="mt-5 max-w-[280px] font-light uppercase leading-snug tracking-wide text-[#D7E2EA] sm:max-w-[340px] md:max-w-[400px]"
-              style={{ fontSize: 'clamp(0.8rem, 1.4vw, 1.25rem)' }}
+              className="mt-5 max-w-[340px] font-semibold uppercase leading-snug tracking-[0.18em] text-[#D7E2EA] sm:max-w-[420px]"
+              style={{ fontSize: 'clamp(0.7rem, 1.2vw, 1rem)' }}
             >
-              A student founder &amp; AI engineer building impactful products
+              Student Founder • Developer • AI / LLM Specialist
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.45} y={20}>
+          <FadeIn delay={0.4} y={20}>
+            <p
+              className="mt-3 max-w-[280px] font-light uppercase leading-snug tracking-wide text-[#D7E2EA] sm:max-w-[340px] md:max-w-[400px]"
+              style={{ fontSize: 'clamp(0.8rem, 1.4vw, 1.25rem)' }}
+            >
+              Building practical AI products for real-world teams and
+              operations
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.5} y={20}>
             <div className="mt-8">
-              <ContactButton />
+              <ContactButton label="My Skills" href="#skills" />
             </div>
           </FadeIn>
         </div>
 
-        {/* ── RIGHT: Avatar (Massive size, fits fully on screen) ── */}
-        <div className="relative z-20 hidden md:flex flex-1 items-end justify-end">
-          <FadeIn
-            delay={0.55}
-            y={20}
-            className="w-full max-w-[50vw] xl:max-w-[55vw] 2xl:max-w-[60vw]"
-          >
-            <Magnet
-              padding={100}
-              strength={2}
-              activeTransition="transform 0.2s ease-out"
-              inactiveTransition="transform 0.5s ease-in-out"
-              className="flex justify-end items-end"
-            >
-              {/* Soft background glow for contrast */}
-              <div
-                className="absolute right-0 bottom-0 -z-10 rounded-full opacity-35"
-                style={{
-                  width: '100%',
-                  height: '80%',
-                  background:
-                    'radial-gradient(circle, rgba(139,92,246,0.5) 0%, rgba(59,130,246,0.15) 50%, transparent 80%)',
-                  filter: 'blur(60px)',
-                }}
+        <FadeIn
+          delay={0.25}
+          y={30}
+          className="relative ml-12 hidden w-[min(33vw,430px)] self-center md:block lg:ml-16 lg:w-[min(30vw,390px)]"
+        >
+          <div className="rounded-[34px] border border-white/10 bg-[#f7f7f7] p-3 shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
+            <div className="overflow-hidden rounded-[24px] bg-white">
+              <img
+                src={AVATAR_IMAGE}
+                alt="Shaurya Sharma portrait"
+                className="h-auto w-full select-none object-cover object-top"
+                draggable={false}
               />
-              {transparentAvatar && (
+            </div>
+
+            <div className="px-2 pb-1 pt-3 text-slate-900">
+              <div className="flex items-center gap-3">
                 <img
-                  src={transparentAvatar}
-                  alt="Shaurya Sharma — cartoon avatar"
-                  className="h-auto w-full object-contain object-bottom select-none pointer-events-none"
-                  style={{
-                    maxHeight: '80vh', // Reduced from 92vh to ensure the cap fits under the top viewport boundary
-                    minHeight: '400px',
-                    filter: 'drop-shadow(0 15px 50px rgba(139,92,246,0.2))',
-                  }}
+                  src="/images/nudgehq-logo.jpg"
+                  alt="NudgeHQ logo"
+                  className="h-10 w-10 rounded-xl object-cover shadow-sm"
                   draggable={false}
                 />
-              )}
-            </Magnet>
-          </FadeIn>
-        </div>
+                <div>
+                  <p className="text-[0.95rem] font-black uppercase tracking-[0.12em] text-slate-900">
+                    NudgeHQ
+                  </p>
+                  <p className="text-[0.82rem] font-medium text-slate-500">
+                    Founder + Product Lead
+                  </p>
+                </div>
+              </div>
+              <p className="mt-3 max-w-[28rem] text-[0.88rem] leading-relaxed text-slate-600">
+                Building practical AI products for real-world teams and
+                operations.
+              </p>
+              <p className="mt-2 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                Student Founder • Developer • AI / LLM Specialist
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {[
+                  'Founder • NudgeHQ',
+                  'Shipped 10+ sites',
+                  'Trusted & recognised developer',
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-slate-200 bg-white px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-slate-600 shadow-sm"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </FadeIn>
       </div>
 
-      {/* Mobile avatar — shown below heading on small screens */}
-      <FadeIn
-        delay={0.55}
-        y={20}
-        className="relative z-20 mx-auto mt-4 w-[240px] pb-8 sm:w-[280px] md:hidden"
-      >
-        {transparentAvatar && (
-          <img
-            src={transparentAvatar}
-            alt="Shaurya Sharma — cartoon avatar"
-            className="h-auto w-full object-contain"
-            style={{
-              filter: 'drop-shadow(0 10px 30px rgba(139,92,246,0.3))',
-            }}
-            draggable={false}
-          />
-        )}
+      <FadeIn delay={0.25} y={30} className="relative z-20 px-6 pb-8 md:hidden">
+        <div className="mx-auto max-w-[375px] rounded-[30px] border border-white/10 bg-[#f7f7f7] p-3 shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
+          <div className="overflow-hidden rounded-[22px] bg-white">
+            <img
+              src={AVATAR_IMAGE}
+              alt="Shaurya Sharma portrait"
+              className="h-auto w-full select-none object-cover object-top"
+              draggable={false}
+            />
+          </div>
+          <div className="px-2 pb-1 pt-3 text-slate-900">
+            <div className="flex items-center gap-3">
+              <img
+                src="/images/nudgehq-logo.jpg"
+                alt="NudgeHQ logo"
+                className="h-10 w-10 rounded-xl object-cover shadow-sm"
+                draggable={false}
+              />
+              <div>
+                <p className="text-[0.95rem] font-black uppercase tracking-[0.12em] text-slate-900">
+                  NudgeHQ
+                </p>
+                <p className="text-[0.82rem] font-medium text-slate-500">
+                  Founder + Product Lead
+                </p>
+              </div>
+            </div>
+            <p className="mt-2 text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-slate-500">
+              Student Founder • Developer • AI / LLM Specialist
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {[
+                'Founder • NudgeHQ',
+                'Shipped 10+ sites',
+                'Trusted & recognised developer',
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-slate-200 bg-white px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-slate-600 shadow-sm"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
       </FadeIn>
     </section>
   );

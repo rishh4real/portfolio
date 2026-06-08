@@ -2,14 +2,22 @@ import { CONTACT } from '../data/content';
 
 interface ContactButtonProps {
   className?: string;
+  label?: string;
+  href?: string;
 }
 
-export default function ContactButton({ className = '' }: ContactButtonProps) {
+export default function ContactButton({
+  className = '',
+  label = 'Contact Me',
+  href = CONTACT.linkedin,
+}: ContactButtonProps) {
+  const isInternalLink = href.startsWith('#');
+
   return (
     <a
-      href={CONTACT.linkedin}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={href}
+      target={isInternalLink ? undefined : '_blank'}
+      rel={isInternalLink ? undefined : 'noopener noreferrer'}
       className={`inline-block rounded-full px-8 py-3 text-xs font-medium uppercase tracking-widest text-white transition-opacity hover:opacity-90 sm:px-10 sm:py-3.5 sm:text-sm md:px-12 md:py-4 md:text-base ${className}`}
       style={{
         background:
@@ -20,7 +28,7 @@ export default function ContactButton({ className = '' }: ContactButtonProps) {
         outlineOffset: '-3px',
       }}
     >
-      Contact Me
+      {label}
     </a>
   );
 }
