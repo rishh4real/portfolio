@@ -1,173 +1,227 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
+import { Code2 } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import {
+  siChatbot,
+  siClaude,
+  siDeepseek,
+  siFirebase,
+  siGodaddy,
+  siGithub,
+  siJavascript,
+  siOpencode,
+  siPython,
+  siReact,
+  siTailwindcss,
+  siTypescript,
+  siVercel,
+  siVite,
+} from 'simple-icons';
 import FadeIn from '../components/FadeIn';
 import ContactButton from '../components/ContactButton';
-import { NAV_LINKS } from '../data/content';
+
+const HERO_IMAGE = '/images/avatar_face_clean.png';
+
+type SimpleIcon = { svg: string; title: string; hex?: string };
+
+type FlutterItem = {
+  label: string;
+  icon: SimpleIcon | 'vscode';
+  glow: string;
+  side: 'left' | 'right';
+  className: string;
+};
+
+const FLUTTER_ITEMS: FlutterItem[] = [
+  { label: 'VS Code', icon: 'vscode', glow: '#4FA3FF', side: 'left', className: 'left-[7%] top-[16%]' },
+  { label: 'React', icon: siReact as SimpleIcon, glow: `#${siReact.hex}`, side: 'left', className: 'left-[1%] top-[31%]' },
+  { label: 'Claude', icon: siClaude as SimpleIcon, glow: `#${siClaude.hex}`, side: 'left', className: 'left-[5%] top-[49%]' },
+  { label: 'Python', icon: siPython as SimpleIcon, glow: `#${siPython.hex}`, side: 'left', className: 'left-[17%] top-[63%]' },
+  { label: 'Codex / OpenAI', icon: siOpencode as SimpleIcon, glow: `#${siOpencode.hex}`, side: 'left', className: 'left-[10%] bottom-[11%]' },
+  { label: 'Tailwind', icon: siTailwindcss as SimpleIcon, glow: `#${siTailwindcss.hex}`, side: 'left', className: 'left-[24%] top-[22%]' },
+  { label: 'ChatGPT', icon: siChatbot as SimpleIcon, glow: `#${siChatbot.hex}`, side: 'right', className: 'right-[9%] top-[14%]' },
+  { label: 'TypeScript', icon: siTypescript as SimpleIcon, glow: `#${siTypescript.hex}`, side: 'right', className: 'right-[1%] top-[29%]' },
+  { label: 'DeepSeek', icon: siDeepseek as SimpleIcon, glow: `#${siDeepseek.hex}`, side: 'right', className: 'right-[4%] top-[48%]' },
+  { label: 'Firebase', icon: siFirebase as SimpleIcon, glow: `#${siFirebase.hex}`, side: 'right', className: 'right-[13%] bottom-[16%]' },
+  { label: 'GoDaddy', icon: siGodaddy as SimpleIcon, glow: `#${siGodaddy.hex}`, side: 'right', className: 'right-[28%] top-[28%]' },
+  { label: 'JavaScript', icon: siJavascript as SimpleIcon, glow: `#${siJavascript.hex}`, side: 'right', className: 'right-[27%] bottom-[7%]' },
+  { label: 'Vite', icon: siVite as SimpleIcon, glow: `#${siVite.hex}`, side: 'left', className: 'left-[30%] bottom-[24%]' },
+  { label: 'GitHub', icon: siGithub as SimpleIcon, glow: '#FFFFFF', side: 'right', className: 'right-[20%] top-[62%]' },
+  { label: 'Vercel', icon: siVercel as SimpleIcon, glow: '#FFFFFF', side: 'left', className: 'left-[22%] top-[43%]' },
+];
+
+function SimpleIcon({ icon }: { icon: SimpleIcon }) {
+  return (
+    <span
+      className="block h-6 w-6 [&>svg]:h-full [&>svg]:w-full [&>svg]:fill-current"
+      aria-hidden="true"
+      dangerouslySetInnerHTML={{ __html: icon.svg }}
+    />
+  );
+}
+
+function FlutterChip({ item, index }: { item: FlutterItem; index: number }) {
+  const direction = item.side === 'left' ? -1 : 1;
+  const distance = 34 + (index % 4) * 8;
+  const verticalDistance = 20 + (index % 5) * 6;
+  const duration = 4.2 + (index % 5) * 0.55;
+
+  return (
+    <motion.div
+      className={`hero-flutter-chip hero-flutter-${item.side} group ${item.className}`}
+      animate={{
+        x: [0, direction * distance, direction * -distance * 0.72, direction * distance * 0.38, 0],
+        y: [0, -verticalDistance, verticalDistance * 0.9, -verticalDistance * 0.35, 0],
+        rotate: [0, direction * 8, direction * -7, direction * 4, 0],
+      }}
+      transition={{
+        duration,
+        repeat: Infinity,
+        repeatType: 'loop',
+        ease: 'easeInOut',
+        delay: index * 0.16,
+      }}
+      whileHover={{ scale: 1.18, zIndex: 70 }}
+      style={
+        {
+          '--pulse-duration': `${3.2 + (index % 5) * 0.35}s`,
+          '--chip-glow': item.glow,
+        } as CSSProperties
+      }
+      aria-label={item.label}
+      title={item.label}
+    >
+      <div className="hero-flutter-face">
+        <span className="hero-flutter-core" style={{ color: item.glow }}>
+          {item.icon === 'vscode' ? <Code2 className="h-6 w-6" /> : <SimpleIcon icon={item.icon} />}
+        </span>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function HeroSection() {
   const glowRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  // Subtle mouse-follow glow effect
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+  const photoY = useTransform(scrollYProgress, [0, 1], [0, 46]);
+
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (event: MouseEvent) => {
       if (!glowRef.current) return;
-      const { clientX, clientY } = e;
-      glowRef.current.style.transform = `translate(${clientX - 300}px, ${clientY - 300}px)`;
+      glowRef.current.style.transform = `translate(${event.clientX - 320}px, ${event.clientY - 320}px)`;
     };
+
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
-    <section className="relative flex min-h-[100svh] flex-col overflow-hidden lg:min-h-screen">
-      {/* Ambient glow that follows the mouse */}
+    <section
+      ref={sectionRef}
+      className="relative isolate min-h-[100svh] overflow-hidden bg-[#0b0c10] text-white"
+    >
       <div
         ref={glowRef}
-        className="pointer-events-none absolute z-0 h-[600px] w-[600px] rounded-full opacity-20 transition-transform duration-700 ease-out"
+        className="pointer-events-none absolute z-0 h-[640px] w-[640px] rounded-full opacity-25 transition-transform duration-700 ease-out"
         style={{
           background:
-            'radial-gradient(circle, rgba(139,92,246,0.4) 0%, rgba(59,130,246,0.1) 50%, transparent 70%)',
-          filter: 'blur(70px)',
+            'radial-gradient(circle, rgba(255,77,141,0.42) 0%, rgba(255,77,141,0.18) 24%, transparent 70%)',
+          filter: 'blur(90px)',
         }}
       />
 
-      {/* Static background accent orbs */}
       <div
-        className="pointer-events-none absolute left-[70%] top-1/2 z-0 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-15"
+        className="pointer-events-none absolute inset-0 z-0 opacity-[0.26]"
         style={{
-          background: 'radial-gradient(circle, rgba(139,92,246,0.6) 0%, transparent 70%)',
-          filter: 'blur(100px)',
-        }}
-      />
-      <div
-        className="pointer-events-none absolute bottom-0 left-1/4 z-0 h-[400px] w-[400px] rounded-full opacity-10"
-        style={{
-          background: 'radial-gradient(circle, rgba(59,130,246,0.4) 0%, transparent 70%)',
-          filter: 'blur(80px)',
+          backgroundImage: `
+            radial-gradient(circle at 18% 24%, rgba(255,255,255,0.06) 0, transparent 18%),
+            radial-gradient(circle at 78% 34%, rgba(255,255,255,0.05) 0, transparent 15%),
+            radial-gradient(circle at 50% 72%, rgba(255,77,141,0.11) 0, transparent 24%),
+            linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)
+          `,
+          backgroundSize: 'cover, cover, cover, 100% 44px, 44px 100%',
+          mixBlendMode: 'screen',
         }}
       />
 
-      {/* ── NAV ── */}
-      <FadeIn delay={0} y={-20}>
-        <nav className="relative z-30 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 pt-5 md:flex-nowrap md:justify-between md:px-10 md:pt-8">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-[0.72rem] font-medium uppercase tracking-[0.14em] text-[#D7E2EA] transition-opacity duration-200 hover:opacity-70 sm:text-xs md:text-lg lg:text-[1.4rem]"
-            >
-              {link.label}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.045),transparent_42%),radial-gradient(circle_at_center,rgba(255,77,141,0.09),transparent_62%)] opacity-90" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-28 bg-gradient-to-t from-[#0b0c10] to-transparent" />
+
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1600px] flex-col px-5 py-7 sm:px-8 md:px-10 lg:px-12">
+        <nav className="flex items-center justify-between text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-white/80 sm:text-xs">
+          <a href="/" className="flex items-center gap-3 transition-colors hover:text-[#FF4D8D]">
+            <span className="inline-flex h-3 w-3 rounded-sm bg-white" />
+            Shaurya Sharma
+          </a>
+          <div className="flex items-center gap-5 sm:gap-8">
+            <a href="/about" className="transition-colors hover:text-[#FF4D8D]">
+              About
             </a>
-          ))}
+            <a href="/projects" className="hidden transition-colors hover:text-[#FF4D8D] sm:inline">
+              Projects
+            </a>
+          </div>
         </nav>
-      </FadeIn>
 
-      {/* ── MAIN CONTENT: text + profile card ── */}
-      <div className="relative z-10 flex flex-1 items-center px-6 pb-10 md:px-12 md:pb-14 lg:px-14 xl:px-16">
-        {/* ── LEFT: Big heading + subtitle + CTA ── */}
-        <div className="relative z-10 flex max-w-4xl flex-1 flex-col justify-center">
-          <FadeIn delay={0.1} y={30}>
-            <h1 className="hero-heading font-black uppercase leading-[0.84] tracking-tight">
-              <span
-                className="block"
-                style={{ fontSize: 'clamp(3rem, 8vw, 7.5rem)' }}
-              >
-                Hi, I'm
-              </span>
-              <span
-                className="block"
-                style={{
-                  fontSize: 'clamp(5rem, 13vw, 13rem)',
-                  letterSpacing: '-0.055em',
-                }}
-              >
-                Shaurya Sharma
-              </span>
+        <div className="relative flex flex-1 flex-col items-center justify-center gap-5 pb-8 pt-12 text-center sm:gap-6 lg:pt-8">
+          <FadeIn y={18} className="relative z-40">
+            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.38em] text-white/62 sm:text-sm">
+              Student Founder • Web Developer • AI/Automation Specialist
+            </p>
+          </FadeIn>
+
+          <div className="relative isolate flex w-full max-w-[980px] items-center justify-center py-2 sm:py-4 lg:py-0">
+            <div className="absolute left-1/2 top-1/2 z-0 h-[min(82vw,760px)] w-[min(82vw,760px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,77,141,0.28)_0%,rgba(130,81,255,0.14)_30%,rgba(255,255,255,0.045)_48%,transparent_72%)] blur-2xl" />
+            <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden h-[min(92vw,860px)] w-[min(96vw,1120px)] -translate-x-1/2 -translate-y-1/2 md:block">
+              {FLUTTER_ITEMS.map((item, index) => (
+                <FlutterChip key={item.label} item={item} index={index} />
+              ))}
+            </div>
+
+            <motion.img
+              src={HERO_IMAGE}
+              alt="Shaurya Sharma portrait"
+              className="relative z-20 block max-h-[58svh] w-[min(78vw,590px)] select-none object-contain opacity-[0.72] drop-shadow-[0_32px_90px_rgba(0,0,0,0.58)] sm:max-h-[64svh] md:w-[min(66vw,610px)]"
+              style={{ y: photoY }}
+              draggable={false}
+            />
+
+            <h1
+              className="pointer-events-none absolute left-1/2 top-1/2 z-30 w-full -translate-x-1/2 -translate-y-1/2 font-black uppercase tracking-[-0.105em] drop-shadow-[0_14px_48px_rgba(0,0,0,0.68)]"
+              style={{ fontSize: 'clamp(4.1rem, 14.8vw, 14.4rem)', lineHeight: 0.78 }}
+            >
+              <span className="hero-name-line hero-name-line-top">Shaurya</span>
+              <span className="hero-name-line hero-name-line-bottom">Sharma</span>
             </h1>
-          </FadeIn>
+          </div>
 
-          <FadeIn delay={0.3} y={20}>
-            <p
-              className="mt-5 max-w-[340px] font-semibold uppercase leading-snug tracking-[0.18em] text-[#D7E2EA] sm:max-w-[420px]"
-              style={{ fontSize: 'clamp(0.7rem, 1.2vw, 1rem)' }}
-            >
-              Student Founder • Developer • AI / LLM Specialist
+          <FadeIn delay={0.08} y={18} className="relative z-40 max-w-3xl">
+            <p className="mx-auto text-base leading-relaxed text-white/68 sm:text-lg md:text-xl">
+              Building websites, AI integrations, and automation systems for real-world businesses.
             </p>
-          </FadeIn>
-
-          <FadeIn delay={0.4} y={20}>
-            <p
-              className="mt-3 max-w-[280px] font-light uppercase leading-snug tracking-wide text-[#D7E2EA] sm:max-w-[340px] md:max-w-[400px]"
-              style={{ fontSize: 'clamp(0.8rem, 1.4vw, 1.25rem)' }}
-            >
-              Building practical AI products for real-world teams and
-              operations
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.5} y={20}>
-            <div className="mt-8">
-              <ContactButton label="My Skills" href="#skills" />
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <ContactButton label="View Skills" href="/skills" className="scale-95 sm:scale-100" />
+              <a
+                href="/projects"
+                className="rounded-full border border-white/12 bg-white/5 px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/70 backdrop-blur-sm transition-colors hover:border-[#FF4D8D]/40 hover:text-white"
+              >
+                View Projects
+              </a>
             </div>
           </FadeIn>
-        </div>
 
-        <FadeIn
-          delay={0.25}
-          y={30}
-          className="relative ml-auto hidden w-[min(32vw,430px)] self-center md:block lg:ml-16 lg:w-[min(30vw,410px)] lg:translate-x-8 xl:translate-x-16"
-        >
-          <div className="rounded-[34px] border border-white/10 bg-[#f7f7f7] p-2.5 shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
-            <div className="overflow-hidden rounded-[24px] bg-white">
-              <img
-                src="/images/avatar_face.jpg"
-                alt="Shaurya Sharma portrait"
-                className="h-auto w-full select-none object-cover object-top"
-                draggable={false}
-              />
-            </div>
-
-            <div className="px-2 pb-1 pt-3 text-slate-900">
-              <div className="flex items-center gap-3">
-                <img
-                  src="/images/nudgehq-logo.jpg"
-                  alt="NudgeHQ logo"
-                  className="h-10 w-10 rounded-xl object-cover shadow-sm"
-                  draggable={false}
-                />
-                <div>
-                  <p className="text-[0.95rem] font-black uppercase tracking-[0.12em] text-slate-900">
-                    NudgeHQ
-                  </p>
-                  <p className="text-[0.82rem] font-medium text-slate-500">
-                    Founder + Product Lead
-                  </p>
-                </div>
-              </div>
-              <p className="mt-3 max-w-[28rem] text-[0.88rem] leading-relaxed text-slate-600">
-                Building practical AI products for real-world teams and
-                operations.
-              </p>
-              <p className="mt-2 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                Student Founder • Developer • AI / LLM Specialist
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {[
-                  'Founder • NudgeHQ',
-                  'Shipped 10+ sites',
-                  'Trusted & recognised developer',
-                ].map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-slate-200 bg-white px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-slate-600 shadow-sm"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
+          <div className="pointer-events-none absolute inset-x-0 bottom-2 z-0 hidden justify-center overflow-hidden opacity-80 lg:flex">
+            <div className="hero-ticker text-[0.62rem] font-semibold uppercase tracking-[0.48em] text-white/16">
+              React • Vite • Tailwind • n8n • Firebase • AI Automation • React • Vite • Tailwind • n8n • Firebase • AI Automation
             </div>
           </div>
-        </FadeIn>
-
+        </div>
       </div>
     </section>
   );

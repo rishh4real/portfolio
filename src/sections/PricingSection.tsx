@@ -2,29 +2,69 @@ import FadeIn from '../components/FadeIn';
 
 const PACKAGES = [
   {
-    title: 'Basic Website',
-    price: '₹8K',
-    subtitle: '4 to 6 pages',
+    title: 'Basic Site',
+    price: '₹12K',
+    subtitle: 'Simple business presence',
     description:
-      'A clean, modern website for personal brands, startups, or small businesses.',
-    features: ['Responsive design', 'Smooth sections', 'Basic contact setup', 'Fast delivery'],
+      'A clean website for businesses, freelancers, or personal brands that need a strong online presence.',
+    features: ['Responsive build', 'Clean sections', 'Fast turnaround', 'Easy updates'],
   },
   {
-    title: '3D + Animation Site',
-    price: '₹12K',
-    subtitle: 'Animated experience',
+    title: 'Animated Experience',
+    price: '₹18K',
+    subtitle: 'Premium motion-heavy site',
     description:
-      'A visually rich site with 3D-style motion, transitions, and a more premium feel.',
+      'A more cinematic website with motion, transitions, and richer presentation for stronger visual impact.',
     features: ['Motion effects', 'Interactive UI', 'Premium visuals', 'Custom storytelling'],
     featured: true,
   },
   {
-    title: 'Custom AI Build',
+    title: 'Custom Site / AI Build',
     price: '₹10K–20K',
-    subtitle: 'As per requirements',
+    subtitle: 'According to the site',
     description:
-      'Custom websites with AI integrations, bots, automation, and tailored workflows.',
+      'Custom websites, AI integrations, bots, and workflows built around your exact requirements.',
     features: ['AI integrations', 'AI bots', 'Workflow automation', 'Requirement-based scope'],
+  },
+  {
+    title: 'WP Catalog',
+    price: '₹8K–20K',
+    subtitle: 'Catalog setup and structure',
+    description:
+      'Catalog-style website support for businesses that need a simple, organized product or service showcase.',
+    features: ['Catalog structure', 'Product sections', 'Clean layout', 'Easy navigation'],
+  },
+  {
+    title: 'Canva Editing',
+    price: '₹1K–2K',
+    subtitle: 'Per template',
+    description:
+      'Template-based Canva edits for visuals that need quick polish, consistency, and brand alignment.',
+    features: ['Per-template pricing', 'Social media creatives', 'Brand consistency', 'Fast revisions'],
+  },
+  {
+    title: 'Canva Video Editing',
+    price: '₹1.5K–5K',
+    subtitle: 'Per video',
+    description:
+      'Short-form or campaign video editing with cleaner motion, pacing, and branded presentation.',
+    features: ['Per-video pricing', 'Social reels', 'Campaign edits', 'Polished delivery'],
+  },
+  {
+    title: 'Email Marketing',
+    price: '₹7K–10K',
+    subtitle: 'Campaign setup + hosting',
+    description:
+      'Email marketing setup, campaign structuring, and hosting support for businesses that want cleaner outreach.',
+    features: ['Campaign setup', 'Hosting support', 'Mail structure', 'Requirement-based scope'],
+  },
+  {
+    title: 'Monthly Maintenance',
+    price: '₹4K–5K',
+    subtitle: 'Per month',
+    description:
+      'Ongoing site support, small fixes, content updates, and maintenance so the site keeps running smoothly.',
+    features: ['Content updates', 'Bug fixes', 'Small improvements', 'Priority support'],
   },
 ];
 
@@ -53,7 +93,7 @@ export default function PricingSection() {
         </p>
       </FadeIn>
 
-      <div className="mx-auto mt-14 grid max-w-6xl gap-5 md:mt-20 md:grid-cols-3">
+      <div className="mx-auto mt-14 grid max-w-5xl gap-5 md:mt-20 md:grid-cols-2">
         {PACKAGES.map((item, index) => (
           <FadeIn key={item.title} delay={index * 0.08} y={24}>
             <div

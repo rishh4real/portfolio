@@ -11,17 +11,6 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, index, totalCards }: ProjectCardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeImage, setActiveImage] = useState<string | null>(null);
-  const hasGallery = Boolean(project.gallery?.length);
-  const heroImageHeight = hasGallery
-    ? project.gallery!.length > 5
-      ? 'clamp(150px, 18vw, 220px)'
-      : 'clamp(165px, 20vw, 250px)'
-    : 'clamp(130px, 16vw, 230px)';
-  const thumbImageHeight = hasGallery
-    ? project.gallery!.length > 5
-      ? 'clamp(88px, 9.5vw, 118px)'
-      : 'clamp(96px, 10vw, 130px)'
-    : 'clamp(160px, 22vw, 340px)';
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -106,8 +95,7 @@ export default function ProjectCard({ project, index, totalCards }: ProjectCardP
               <img
                 src={project.gallery[0]}
                 alt={`${project.name} screenshot 1`}
-                className="h-auto w-full cursor-zoom-in object-cover"
-                style={{ height: heroImageHeight }}
+                className="aspect-[16/10] h-auto w-full cursor-zoom-in object-contain bg-[#111] p-2"
               />
             </button>
 
@@ -122,8 +110,7 @@ export default function ProjectCard({ project, index, totalCards }: ProjectCardP
                   <img
                     src={image}
                     alt={`${project.name} screenshot ${imageIndex + 2}`}
-                    className="h-auto w-full cursor-zoom-in object-cover"
-                    style={{ height: thumbImageHeight }}
+                    className="aspect-[4/3] h-auto w-full cursor-zoom-in object-contain bg-[#111] p-2"
                   />
                 </button>
               ))}
@@ -135,20 +122,18 @@ export default function ProjectCard({ project, index, totalCards }: ProjectCardP
               <img
                 src={project.images.col1Top}
                 alt={`${project.name} preview 1`}
-                className="w-full rounded-[40px] object-cover sm:rounded-[50px] md:rounded-[60px]"
-                style={{ height: 'clamp(130px, 16vw, 230px)' }}
+                className="aspect-[16/10] w-full rounded-[40px] object-contain bg-[#111] p-2 sm:rounded-[50px] md:rounded-[60px]"
               />
               <img
                 src={project.images.col1Bottom}
                 alt={`${project.name} preview 2`}
-                className="w-full rounded-[40px] object-cover sm:rounded-[50px] md:rounded-[60px]"
-                style={{ height: 'clamp(160px, 22vw, 340px)' }}
+                className="aspect-[4/3] w-full rounded-[40px] object-contain bg-[#111] p-2 sm:rounded-[50px] md:rounded-[60px]"
               />
             </div>
             <img
               src={project.images.col2}
               alt={`${project.name} preview 3`}
-              className="w-[60%] rounded-[40px] object-cover sm:rounded-[50px] md:rounded-[60px]"
+              className="w-[60%] rounded-[40px] object-contain bg-[#111] p-2 sm:rounded-[50px] md:rounded-[60px]"
             />
           </div>
         )}

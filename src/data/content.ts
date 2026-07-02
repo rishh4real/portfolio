@@ -9,11 +9,12 @@ export const CONTACT = {
 };
 
 export const NAV_LINKS = [
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/' },
+  { label: 'Skills', href: '/skills' },
+  { label: 'Feedback', href: '/feedback' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export const MARQUEE_ROW_1 = [
@@ -35,37 +36,36 @@ export const SKILLS = [
     number: '01',
     name: 'Frontend Development',
     description:
-      'React.js, Tailwind CSS, HTML/CSS, and Vite — building responsive, polished interfaces with smooth animations and modern UX patterns.',
+      'Building responsive interfaces with modern structure and clean UI.',
+    tags: ['React', 'Vite', 'Tailwind CSS', 'HTML', 'CSS'],
   },
   {
     number: '02',
     name: 'Backend & APIs',
     description:
-      'Node.js, Express.js, FastAPI, REST APIs, JWT Auth, WebSockets, and Twilio integrations for real-time, secure applications.',
+      'Wiring up the logic that makes a product actually work.',
+    tags: ['Node.js', 'Express', 'REST APIs', 'Integrations'],
   },
   {
     number: '03',
-    name: 'Agentic AI, LLMs & RAG',
+    name: 'Python & DSA',
     description:
-      'Groq API, Claude AI, Gemini API, prompt engineering, agentic workflows, and RAG pipelines for useful AI products and assistants.',
+      'Python problem solving, data structures, and algorithms.',
+    tags: ['Python', 'Data Structures', 'Algorithms', 'Problem Solving'],
   },
   {
     number: '04',
-    name: 'Python DSA & Problem Solving',
+    name: 'AI, LLMs & Automation',
     description:
-      'Data structures, algorithms, and problem solving in Python with a focus on clean logic, efficient patterns, and interview-ready fundamentals.',
+      'Practical AI systems and chatbots with workflow automation.',
+    tags: ['Claude', 'LLMs', 'RAG', 'n8n', 'Chatbots'],
   },
   {
     number: '05',
-    name: 'Database & Cloud',
+    name: 'Databases & Deployment',
     description:
-      'Supabase, PostgreSQL, MongoDB, Firebase Firestore, Google Cloud Platform — architecting scalable data layers for SaaS products.',
-  },
-  {
-    number: '06',
-    name: 'Product & Deployment',
-    description:
-      'Full SaaS onboarding, role-based dashboards, CSV imports, magic invite links, Vercel, Render, and Firebase Hosting deployments.',
+      'Shipping and hosting projects reliably.',
+    tags: ['Supabase', 'PostgreSQL', 'Firebase', 'Vercel', 'Render'],
   },
 ];
 
@@ -95,11 +95,31 @@ export interface Project {
 export const PROJECTS: Project[] = [
   {
     number: '01',
+    category: 'Client Paid Project',
+    name: 'Ikehu',
+    url: '',
+    status: 'Deploying Mode',
+    blurb:
+      'A paid client project for Ikehu, currently in deploying mode. Built as a sharp talent/search website with a strong yellow-black editorial identity, team story, service flow, FAQ, and contact-ready sections.',
+    gallery: [
+      '/images/showcase/ikehu-home.png',
+      '/images/showcase/ikehu-work.png',
+      '/images/showcase/ikehu-ambition.png',
+      '/images/showcase/ikehu-faq.png',
+    ],
+    images: {
+      col1Top: '/images/showcase/ikehu-home.png',
+      col1Bottom: '/images/showcase/ikehu-work.png',
+      col2: '/images/showcase/ikehu-ambition.png',
+    },
+  },
+  {
+    number: '02',
     category: 'Startup',
     name: 'NudgeHQ',
     url: '',
-    status: 'Coming Soon',
-    blurb: 'In developing mode. Site link hidden until launch.',
+    status: 'Developing',
+    blurb: 'Founder-led AI product currently in development — kept intentionally private until launch.',
     gallery: [
       '/images/showcase/nudgehq-hero.png',
       '/images/showcase/nudgehq-dashboard.png',
@@ -115,7 +135,26 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    number: '02',
+    number: '03',
+    category: 'Freelance Portfolio',
+    name: 'A Square Design',
+    url: 'https://www.asquaredesign.com/',
+    status: 'Delivered',
+    blurb:
+      'A pink, editorial-style freelance portfolio built for a visual storyteller — warm, polished, and structured for brand presentation.',
+    gallery: [
+      '/images/showcase/asquaredesign-hero.png',
+      '/images/showcase/asquaredesign-projects.png',
+      '/images/showcase/asquaredesign-more.png',
+    ],
+    images: {
+      col1Top: '/images/showcase/asquaredesign-hero.png',
+      col1Bottom: '/images/showcase/asquaredesign-projects.png',
+      col2: '/images/showcase/asquaredesign-more.png',
+    },
+  },
+  {
+    number: '04',
     category: 'AI for Bharat',
     name: 'LexFlow',
     url: 'https://lexflow-beta.vercel.app',
@@ -136,7 +175,7 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    number: '03',
+    number: '05',
     category: 'Emergency Response',
     name: 'CrisisGrid',
     url: 'https://crisis-grid-ten.vercel.app',
@@ -155,7 +194,7 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    number: '04',
+    number: '06',
     category: 'Event Intelligence',
     name: 'GridSense.ai',
     url: 'https://rishh4real.github.io/Gridsense.ai/',
@@ -174,7 +213,7 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    number: '05',
+    number: '07',
     category: 'Personal Brand',
     name: 'Content Writer Portfolio',
     url: 'https://rishh4real.github.io/content-writer-portfolio/',

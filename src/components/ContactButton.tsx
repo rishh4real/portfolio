@@ -1,5 +1,3 @@
-import { CONTACT } from '../data/content';
-
 interface ContactButtonProps {
   className?: string;
   label?: string;
@@ -9,9 +7,9 @@ interface ContactButtonProps {
 export default function ContactButton({
   className = '',
   label = 'Contact Me',
-  href = CONTACT.linkedin,
+  href = '/contact',
 }: ContactButtonProps) {
-  const isInternalLink = href.startsWith('#');
+  const isInternalLink = href.startsWith('#') || href.startsWith('/');
 
   return (
     <a

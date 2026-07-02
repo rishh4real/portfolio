@@ -27,3 +27,154 @@ body,
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+.hero-name-line {
+  display: block;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-name-line-top {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.36) 42%,
+    rgba(255, 255, 255, 0.58) 100%
+  );
+}
+
+.hero-name-line-bottom {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.58) 0%,
+    rgba(255, 255, 255, 0.82) 100%
+  );
+}
+
+.client-signature {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  letter-spacing: -0.045em;
+}
+
+@layer components {
+  .hero-flutter-chip {
+    position: absolute;
+    pointer-events: auto;
+    opacity: 0.82;
+    will-change: transform;
+  }
+
+  .hero-flutter-chip:hover {
+    z-index: 60;
+    opacity: 1;
+  }
+
+  .hero-flutter-face {
+    position: relative;
+    display: flex;
+    height: 50px;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background:
+      radial-gradient(circle at 35% 20%, rgba(255,255,255,0.22), transparent 32%),
+      rgba(14, 17, 26, 0.92);
+    box-shadow:
+      0 0 20px color-mix(in srgb, var(--chip-glow) 82%, transparent),
+      0 0 58px color-mix(in srgb, var(--chip-glow) 54%, transparent),
+      0 18px 44px rgba(0, 0, 0, 0.46);
+    color: var(--chip-glow);
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease,
+      opacity 220ms ease;
+    animation: chipLiveGlow var(--pulse-duration, 3.8s) ease-in-out infinite;
+  }
+
+  .hero-flutter-face::after {
+    content: '';
+    position: absolute;
+    inset: -45%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--chip-glow) 42%, transparent), transparent 58%);
+    opacity: 0;
+    transform: translate3d(-18%, -16%, 0);
+    animation: chipInnerSweep calc(var(--pulse-duration, 3.8s) * 1.45) ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .hero-flutter-chip:hover .hero-flutter-face {
+    transform: scale(1.16) rotate(4deg);
+    box-shadow:
+      0 0 32px color-mix(in srgb, var(--chip-glow) 95%, transparent),
+      0 0 80px color-mix(in srgb, var(--chip-glow) 68%, transparent),
+      0 22px 52px rgba(0, 0, 0, 0.52);
+  }
+
+  .hero-flutter-core {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    height: 38px;
+    width: 38px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.06);
+    filter: drop-shadow(0 0 10px color-mix(in srgb, var(--chip-glow) 80%, transparent));
+  }
+
+  .hero-ticker {
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-flex;
+    gap: 2.2rem;
+    animation: tickerScroll 28s linear infinite;
+  }
+}
+
+@keyframes chipLiveGlow {
+  0%,
+  100% {
+    filter: saturate(0.96) brightness(0.92);
+  }
+  50% {
+    filter: saturate(1.28) brightness(1.18);
+  }
+}
+
+@keyframes chipInnerSweep {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate3d(-28%, -18%, 0) scale(0.8);
+  }
+  46% {
+    opacity: 0.72;
+    transform: translate3d(18%, 12%, 0) scale(1.12);
+  }
+}
+
+@keyframes tickerScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-flutter-chip {
+    animation: none;
+    display: none;
+  }
+
+  .hero-ticker {
+    animation: none;
+  }
+}

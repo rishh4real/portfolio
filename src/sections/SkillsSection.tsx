@@ -17,28 +17,39 @@ export default function SkillsSection() {
       <div className="mx-auto max-w-5xl">
         {SKILLS.map((skill, i) => (
           <FadeIn key={skill.number} delay={i * 0.1}>
-            <div
-              className="flex flex-col gap-4 border-t border-[rgba(12,12,12,0.15)] py-8 sm:flex-row sm:items-start sm:gap-8 sm:py-10 md:py-12"
-            >
+            <div className="flex flex-col gap-4 border-t border-[rgba(12,12,12,0.15)] py-8 sm:flex-row sm:items-start sm:gap-8 sm:py-10 md:py-12">
               <span
                 className="flex-shrink-0 font-black text-[#0C0C0C]"
                 style={{ fontSize: 'clamp(3rem, 10vw, 140px)' }}
               >
                 {skill.number}
               </span>
-              <div className="flex flex-col gap-2">
-                <h3
-                  className="font-medium uppercase text-[#0C0C0C]"
-                  style={{ fontSize: 'clamp(1rem, 2.2vw, 2.1rem)' }}
-                >
-                  {skill.name}
-                </h3>
-                <p
-                  className="max-w-2xl font-light leading-relaxed opacity-60"
-                  style={{ fontSize: 'clamp(0.85rem, 1.6vw, 1.25rem)' }}
-                >
-                  {skill.description}
-                </p>
+              <div className="flex flex-1 flex-col gap-3">
+                <div className="flex flex-col gap-2">
+                  <h3
+                    className="font-medium uppercase text-[#0C0C0C]"
+                    style={{ fontSize: 'clamp(1rem, 2.2vw, 2.1rem)' }}
+                  >
+                    {skill.name}
+                  </h3>
+                  <p
+                    className="max-w-2xl font-light leading-relaxed opacity-60"
+                    style={{ fontSize: 'clamp(0.85rem, 1.6vw, 1.25rem)' }}
+                  >
+                    {skill.description}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {skill.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-[#0C0C0C]/12 bg-[#0C0C0C]/5 px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[#0C0C0C]/70"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </FadeIn>
