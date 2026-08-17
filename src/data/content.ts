@@ -94,26 +94,6 @@ export const PROJECTS: Project[] = [
   {
     number: '01',
     category: 'Client Paid Project',
-    name: 'Ikehu',
-    url: 'https://www.ikehu.in/',
-    status: 'Live',
-    blurb:
-      'A live paid client project for Ikehu. Built as a sharp talent/search website with a strong yellow-black editorial identity, team story, service flow, FAQ, and contact-ready sections.',
-    gallery: [
-      '/images/showcase/ikehu-home.png',
-      '/images/showcase/ikehu-work.png',
-      '/images/showcase/ikehu-ambition.png',
-      '/images/showcase/ikehu-faq.png',
-    ],
-    images: {
-      col1Top: '/images/showcase/ikehu-home.png',
-      col1Bottom: '/images/showcase/ikehu-work.png',
-      col2: '/images/showcase/ikehu-ambition.png',
-    },
-  },
-  {
-    number: '02',
-    category: 'Client Paid Project',
     name: 'The Protein Drop',
     url: 'https://www.theproteindrop.com/',
     status: 'Live',
@@ -130,6 +110,26 @@ export const PROJECTS: Project[] = [
       col1Top: '/images/showcase/protein-drop-live-hero.png',
       col1Bottom: '/images/showcase/protein-drop-promise.png',
       col2: '/images/showcase/protein-drop-menu.png',
+    },
+  },
+  {
+    number: '02',
+    category: 'Client Paid Project',
+    name: 'Ikehu',
+    url: 'https://www.ikehu.in/',
+    status: 'Live',
+    blurb:
+      'A live paid client project for Ikehu. Built as a sharp talent/search website with a strong yellow-black editorial identity, team story, service flow, FAQ, and contact-ready sections.',
+    gallery: [
+      '/images/showcase/ikehu-home.png',
+      '/images/showcase/ikehu-work.png',
+      '/images/showcase/ikehu-ambition.png',
+      '/images/showcase/ikehu-faq.png',
+    ],
+    images: {
+      col1Top: '/images/showcase/ikehu-home.png',
+      col1Bottom: '/images/showcase/ikehu-work.png',
+      col2: '/images/showcase/ikehu-ambition.png',
     },
   },
   {
