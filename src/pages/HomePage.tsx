@@ -1,15 +1,15 @@
 import PageShell from '../components/PageShell';
 import HeroSection from '../sections/HeroSection';
-import AboutSection from '../sections/AboutSection';
-import ServicesSection from '../sections/ServicesSection';
+import FeedbackSection from '../sections/FeedbackSection';
+import SkillsSection from '../sections/SkillsSection';
 
 export default function HomePage() {
   return (
     <PageShell>
       <div className="overflow-x-clip font-kanit">
         <HeroSection />
-        <AboutSection />
-        <ServicesSection />
+        <SkillsSection />
+        <FeedbackSection />
       </div>
     </PageShell>
   );

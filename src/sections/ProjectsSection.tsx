@@ -36,7 +36,7 @@ function ProjectImageGrid({ project }: { project: Project }) {
 function ProjectLink({ project }: { project: Project }) {
   if (!project.url) {
     return (
-      <span className="inline-flex rounded-full border border-[#FF4D8D]/25 bg-[#FF4D8D]/10 px-4 py-2 text-[0.68rem] font-black uppercase tracking-[0.22em] text-[#FF9FC2]">
+      <span className="inline-flex rounded-full border border-[#A855F7]/25 bg-[#A855F7]/10 px-4 py-2 text-[0.68rem] font-black uppercase tracking-[0.22em] text-[#C084FC]">
         No live link yet
       </span>
     );
@@ -62,11 +62,11 @@ export default function ProjectsSection() {
     >
       <FadeIn delay={0} y={40}>
         <div className="mx-auto mb-14 max-w-5xl text-center sm:mb-20 md:mb-24">
-          <p className="text-xs font-black uppercase tracking-[0.42em] text-[#FF4D8D]/80">
+          <p className="text-xs font-black uppercase tracking-[0.42em] text-[#C084FC]/80">
             Hand-made projects
           </p>
           <p className="mt-3 text-[0.68rem] font-black uppercase tracking-[0.3em] text-[#D7E2EA]/42">
-            Updated on 2 July 2026
+            Updated on 17 Aug 2026
           </p>
           <h2
             className="hero-heading mt-4 font-black uppercase leading-none tracking-tight"
@@ -90,7 +90,7 @@ export default function ProjectsSection() {
                     {project.number}
                   </span>
                   <div className="pt-2">
-                    <p className="text-xs font-black uppercase tracking-[0.32em] text-[#FF4D8D]/75">
+                    <p className="text-xs font-black uppercase tracking-[0.32em] text-[#C084FC]/75">
                       {project.category}
                     </p>
                     <h3 className="mt-3 text-4xl font-black uppercase leading-none tracking-tight text-[#D7E2EA] sm:text-5xl md:text-6xl">

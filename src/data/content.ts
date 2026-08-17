@@ -9,11 +9,9 @@ export const CONTACT = {
 };
 
 export const NAV_LINKS = [
-  { label: 'About', href: '/' },
-  { label: 'Skills', href: '/skills' },
-  { label: 'Feedback', href: '/feedback' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'Projects', href: '/projects' },
+  { label: 'Home', href: '/' },
+  { label: 'Work', href: '/projects' },
+  { label: 'Prices', href: '/pricing' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -70,11 +68,11 @@ export const SKILLS = [
 ];
 
 export const ACHIEVEMENTS = [
-  'AI for Bharat 2024 — Top 250 out of 10,000+ teams',
-  'Founder & CEO of NudgeHQ — live in beta',
+  'AI for Bharat 2026 — Top 250 out of 10,000+ teams',
+  'Finance-focused web developer building dashboards, sites, and automation',
   'B.Tech CS + AIML at Newton School of Technology, ADYPU (2025–2029)',
-  '500+ LinkedIn connections',
-  'NudgeHQ validated by South Asia HR head of a large company',
+  '1000+ LinkedIn connections',
+  'Shipped 15+ client and personal projects',
 ];
 
 export interface Project {
@@ -97,10 +95,10 @@ export const PROJECTS: Project[] = [
     number: '01',
     category: 'Client Paid Project',
     name: 'Ikehu',
-    url: '',
-    status: 'Deploying Mode',
+    url: 'https://www.ikehu.in/',
+    status: 'Live',
     blurb:
-      'A paid client project for Ikehu, currently in deploying mode. Built as a sharp talent/search website with a strong yellow-black editorial identity, team story, service flow, FAQ, and contact-ready sections.',
+      'A live paid client project for Ikehu. Built as a sharp talent/search website with a strong yellow-black editorial identity, team story, service flow, FAQ, and contact-ready sections.',
     gallery: [
       '/images/showcase/ikehu-home.png',
       '/images/showcase/ikehu-work.png',
@@ -115,11 +113,32 @@ export const PROJECTS: Project[] = [
   },
   {
     number: '02',
-    category: 'Startup',
+    category: 'Client Paid Project',
+    name: 'The Protein Drop',
+    url: 'https://www.theproteindrop.com/',
+    status: 'Live',
+    blurb:
+      'A live food-commerce website for The Protein Drop, a Gurgaon-based high-protein food brand. Built with a bold food-first hero, menu browsing, cart/order flow, WhatsApp ordering, and an AI menu guide for helping customers choose meals by protein target, preference, budget, or party size.',
+    gallery: [
+      '/images/showcase/protein-drop-live-hero.png',
+      '/images/showcase/protein-drop-promise.png',
+      '/images/showcase/protein-drop-menu.png',
+      '/images/showcase/protein-drop-ai-guide.png',
+      '/images/showcase/protein-drop-dark-hero.png',
+    ],
+    images: {
+      col1Top: '/images/showcase/protein-drop-live-hero.png',
+      col1Bottom: '/images/showcase/protein-drop-promise.png',
+      col2: '/images/showcase/protein-drop-menu.png',
+    },
+  },
+  {
+    number: '03',
+    category: 'AI Product',
     name: 'NudgeHQ',
     url: '',
     status: 'Developing',
-    blurb: 'Founder-led AI product currently in development — kept intentionally private until launch.',
+    blurb: 'An AI workflow product currently in development — kept intentionally private until launch.',
     gallery: [
       '/images/showcase/nudgehq-hero.png',
       '/images/showcase/nudgehq-dashboard.png',
@@ -135,7 +154,7 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    number: '03',
+    number: '04',
     category: 'Freelance Portfolio',
     name: 'A Square Design',
     url: 'https://www.asquaredesign.com/',
@@ -154,7 +173,7 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    number: '04',
+    number: '05',
     category: 'AI for Bharat',
     name: 'LexFlow',
     url: 'https://lexflow-beta.vercel.app',
@@ -175,7 +194,7 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    number: '05',
+    number: '06',
     category: 'Emergency Response',
     name: 'CrisisGrid',
     url: 'https://crisis-grid-ten.vercel.app',
@@ -194,7 +213,7 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    number: '06',
+    number: '07',
     category: 'Event Intelligence',
     name: 'GridSense.ai',
     url: 'https://rishh4real.github.io/Gridsense.ai/',
@@ -213,7 +232,7 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    number: '07',
+    number: '08',
     category: 'Personal Brand',
     name: 'Content Writer Portfolio',
     url: 'https://rishh4real.github.io/content-writer-portfolio/',
@@ -239,4 +258,4 @@ export const OTHER_PROJECTS = [
 ];
 
 export const ABOUT_TEXT =
-  "I'm a second-year CS + AIML student at Newton School of Technology, ADYPU, and the founder of NudgeHQ — an AI-powered workforce progress tracking SaaS. I've shipped live products across legal tech, crisis response, and event intelligence. Passionate about humanitarian tech and LLM integration, I love building products that solve real problems. Let's build something incredible together!";
+  "I'm a second-year CS + AIML student at Newton School of Technology, ADYPU, focused on finance, web development, and practical AI automation. I build clean websites, dashboards, and workflow systems for real businesses while sharpening my Python, DSA, and product-building skills. I'm especially interested in fintech, analytics, and tools that make operations faster and smarter.";

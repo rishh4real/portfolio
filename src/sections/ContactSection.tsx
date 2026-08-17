@@ -1,6 +1,6 @@
 import FadeIn from '../components/FadeIn';
 import { CONTACT } from '../data/content';
-import { BriefcaseBusiness, Code2, Mail } from 'lucide-react';
+import { Code2, Mail } from 'lucide-react';
 
 function GitHubMark() {
   return (
@@ -38,18 +38,6 @@ const LINKS = [
   { icon: Mail, label: 'Email', href: `mailto:${CONTACT.email}`, text: CONTACT.email },
   { icon: Code2, label: 'GitHub', href: CONTACT.github, text: '@rishh4real' },
   { icon: GitHubMark, label: 'LinkedIn', href: CONTACT.linkedin, text: 'shaurya-sharma' },
-  {
-    icon: BriefcaseBusiness,
-    label: 'NudgeHQ',
-    href: CONTACT.nudgehqLinkedin,
-    text: 'linkedin.com/company/nudgehq-web',
-  },
-  {
-    icon: InstagramMark,
-    label: 'NudgeHQ Instagram',
-    href: CONTACT.nudgehqInstagram,
-    text: '@hello.nudgehq',
-  },
   {
     icon: InstagramMark,
     label: 'Personal Instagram',

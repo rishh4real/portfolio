@@ -21,7 +21,7 @@ export default function ServicesSection() {
       <FadeIn delay={0} y={32}>
         <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.38em] text-[#FF4D8D]/80">
+            <p className="text-xs font-black uppercase tracking-[0.38em] text-[#C084FC]/80">
               Services I offer
             </p>
             <h2
@@ -36,7 +36,7 @@ export default function ServicesSection() {
             </p>
             <a
               href="/pricing"
-              className="mt-7 inline-flex rounded-full border border-[#FF4D8D]/35 bg-[#FF4D8D] px-6 py-3 text-xs font-black uppercase tracking-[0.24em] text-white shadow-[0_14px_38px_rgba(255,77,141,0.26)] transition-transform hover:-translate-y-0.5"
+              className="mt-7 inline-flex rounded-full border border-[#A855F7]/35 bg-[#7C3AED] px-6 py-3 text-xs font-black uppercase tracking-[0.24em] text-white shadow-[0_14px_38px_rgba(124,58,237,0.26)] transition-transform hover:-translate-y-0.5"
             >
               View pricing
             </a>
@@ -47,9 +47,9 @@ export default function ServicesSection() {
               {SERVICES.map((service) => (
                 <div
                   key={service}
-                  className="group flex items-center gap-3 border-b border-white/10 py-4 text-sm font-semibold uppercase tracking-[0.12em] text-[#D7E2EA]/78 transition-colors hover:border-[#FF4D8D]/35 hover:text-white"
+                  className="group flex items-center gap-3 border-b border-white/10 py-4 text-sm font-semibold uppercase tracking-[0.12em] text-[#D7E2EA]/78 transition-colors hover:border-[#A855F7]/35 hover:text-white"
                 >
-                  <span className="h-2 w-2 shrink-0 rounded-full bg-[#FF4D8D] shadow-[0_0_18px_rgba(255,77,141,0.7)] transition-transform group-hover:scale-125" />
+                  <span className="h-2 w-2 shrink-0 rounded-full bg-[#A855F7] shadow-[0_0_18px_rgba(168,85,247,0.7)] transition-transform group-hover:scale-125" />
                   <span>{service}</span>
                 </div>
               ))}

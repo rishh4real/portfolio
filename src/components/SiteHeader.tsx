@@ -21,7 +21,7 @@ export default function SiteHeader() {
         <button
           type="button"
           onClick={() => setIsOpen((value) => !value)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white transition hover:border-[#FF4D8D]/45 hover:text-[#FF4D8D] md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white transition hover:border-[#A855F7]/45 hover:text-[#C084FC] md:hidden"
           aria-label="Toggle navigation menu"
           aria-expanded={isOpen}
         >
@@ -37,7 +37,7 @@ export default function SiteHeader() {
               className={({ isActive }) =>
                 [
                   'text-[0.72rem] font-semibold uppercase tracking-[0.18em] transition-colors sm:text-xs md:text-sm',
-                  isActive ? 'text-[#FF4D8D]' : 'text-white/70 hover:text-white',
+                  isActive ? 'text-[#C084FC]' : 'text-white/70 hover:text-white',
                 ].join(' ')
               }
             >
@@ -64,7 +64,7 @@ export default function SiteHeader() {
                 [
                   'rounded-2xl border px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] transition-colors',
                   isActive
-                    ? 'border-[#FF4D8D]/45 bg-[#FF4D8D]/10 text-[#FF4D8D]'
+                    ? 'border-[#A855F7]/45 bg-[#A855F7]/10 text-[#C084FC]'
                     : 'border-white/10 bg-white/[0.03] text-white/72 hover:border-white/20 hover:text-white',
                 ].join(' ')
               }

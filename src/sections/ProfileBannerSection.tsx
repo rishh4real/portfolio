@@ -19,33 +19,30 @@ export default function ProfileBannerSection() {
 
             <div className="px-2 pb-1 pt-3 text-slate-900">
               <div className="flex items-center gap-3">
-                <img
-                  src="/images/nudgehq-logo.jpg"
-                  alt="NudgeHQ logo"
-                  className="h-10 w-10 rounded-xl object-cover shadow-sm"
-                  draggable={false}
-                />
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-lg font-black uppercase text-white shadow-sm">
+                  S
+                </span>
                 <div>
                   <p className="text-[0.95rem] font-black uppercase tracking-[0.12em] text-slate-900">
-                    NudgeHQ
+                    Shaurya Sharma
                   </p>
                   <p className="text-[0.82rem] font-medium text-slate-500">
-                    Founder + Product Lead
+                    Finance + Web Development
                   </p>
                 </div>
               </div>
               <p className="mt-3 max-w-[28rem] text-[0.88rem] leading-relaxed text-slate-600">
-                Building practical AI products for real-world teams and
-                operations.
+                Building clean websites, finance-friendly dashboards, and
+                practical AI automation systems.
               </p>
               <p className="mt-2 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                Student Founder • Developer • AI / LLM Specialist
+                Web Developer • Finance Learner • AI / LLM Specialist
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {[
-                  'Founder • NudgeHQ',
-                  'Shipped 10+ sites',
-                  'Trusted & recognised developer',
+                  '1000+ LinkedIn connections',
+                  'Shipped 15+ projects',
+                  'Finance + web focused',
                 ].map((item) => (
                   <span
                     key={item}
